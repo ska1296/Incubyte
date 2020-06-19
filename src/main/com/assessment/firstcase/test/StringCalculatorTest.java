@@ -1,15 +1,25 @@
 package com.assessment.firstcase.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
+import com.assessment.firstcase.StringCalculator;
 
-class StringCalculatorTest {
+import junit.framework.TestCase;
 
+
+class StringCalculatorTest extends TestCase {
+    
+    private StringCalculator obj;
+    
+    @Override
+    protected void setUp() throws Exception {
+        obj = new StringCalculator();
+        super.setUp();
+    }
+    
     @Test
-    void testAdd() {
-        fail("Not yet implemented");
+    void testAddBlank() {
+        assertEquals(0, obj.add(""));
     }
 
 }
