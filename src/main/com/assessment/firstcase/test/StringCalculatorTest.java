@@ -1,25 +1,29 @@
 package com.assessment.firstcase.test;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import com.assessment.firstcase.StringCalculator;
 
-import junit.framework.TestCase;
 
+public class StringCalculatorTest {
 
-class StringCalculatorTest extends TestCase {
-    
-    private StringCalculator obj;
-    
-    @Override
-    protected void setUp() throws Exception {
+    StringCalculator obj;
+    @Before
+    public void setUp() throws Exception {
         obj = new StringCalculator();
-        super.setUp();
+    }
+
+    @Test
+    public void testAddBlank() {
+        assertEquals(0, obj.add(""));
     }
     
     @Test
-    void testAddBlank() {
-        assertEquals(0, obj.add(""));
+    public void testAddSingle() {
+        assertEquals(1, obj.add("1"));
+        assertNotEquals(0, obj.add("1"));
     }
-
 }
