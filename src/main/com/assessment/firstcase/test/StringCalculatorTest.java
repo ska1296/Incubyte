@@ -36,8 +36,13 @@ public class StringCalculatorTest {
     
     @Test
     public void testAddDouble() {
+        assertEquals(5, obj.add("2,3"));
+    }
+    
+    @Test 
+    public void testAddN() {
         exceptionRule.expect(UnsupportedOperationException.class);
         exceptionRule.expectMessage("Please pass only blank or single value string");
-        assertEquals(5, obj.add("2,3"));
+        assertEquals(10, obj.add("1,2,3,4"));
     }
 }
