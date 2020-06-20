@@ -105,4 +105,10 @@ public class StringCalculatorTest {
         assertEquals(6, obj.add("//[***]\n1***2***3"));
         assertEquals(10, obj.add("//[\n\n\n\n]\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4"));
     }
+    
+    @Test
+    public void testAddMultipleDelimiter() {
+        assertEquals(6, obj.add("//[*][%]\n1*2%3"));
+        assertEquals(6, obj.add("//[\n][%]\n1\n2%3"));
+    }
 }
