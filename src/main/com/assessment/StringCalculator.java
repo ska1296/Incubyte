@@ -32,8 +32,12 @@ public class StringCalculator {
         int sum = 0;
         String [] input = numbers.split(delimiter);
         for (String eachNum : input) {
-            if (!eachNum.isEmpty())
+            if (!eachNum.isEmpty()) {
+                if (Integer.parseInt(eachNum.trim()) < 0) {
+                    throw new UnsupportedOperationException("negatives not allowed. Negative number: "+eachNum);
+                }
                 sum+=Integer.parseInt(eachNum.trim());
+            }
         }
         return sum;
     }

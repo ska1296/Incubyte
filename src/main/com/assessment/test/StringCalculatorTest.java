@@ -65,5 +65,11 @@ public class StringCalculatorTest {
         exceptionRule.expectMessage("negatives not allowed.");
         exceptionRule.expectMessage("-4");
         assertEquals(2, obj.add("1,2,3,-4"));
+        
+        exceptionRule.expect(UnsupportedOperationException.class);
+        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage("-1");
+        assertEquals(2, obj.add("-1"));
+        
     }
 }
