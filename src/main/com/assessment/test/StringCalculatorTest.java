@@ -1,4 +1,4 @@
-package com.assessment.firstcase.test;
+package com.assessment.test;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.assessment.firstcase.StringCalculator;
+import com.assessment.StringCalculator;
 
 
 public class StringCalculatorTest {

@@ -1,4 +1,4 @@
-package com.assessment.firstcase;
+package com.assessment;
 
 public class StringCalculator {
     
