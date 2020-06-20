@@ -91,4 +91,11 @@ public class StringCalculatorTest {
         assertEquals(0, obj.add("0"));
         assertEquals(5, obj.getCalledCount());
     }
+    
+    @Test
+    public void testAddGreaterThanThousand() {
+        assertEquals(0, obj.add("1001"));
+        assertEquals(1000, obj.add("1000"));
+        assertEquals(2, obj.add("2,1001"));
+    }
 }
