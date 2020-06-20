@@ -41,8 +41,6 @@ public class StringCalculatorTest {
     
     @Test 
     public void testAddN() {
-        exceptionRule.expect(UnsupportedOperationException.class);
-        exceptionRule.expectMessage("Please pass only blank or single value string");
         assertEquals(10, obj.add("1,2,3,4"));
     }
 }
