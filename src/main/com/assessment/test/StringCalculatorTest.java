@@ -18,7 +18,7 @@ public class StringCalculatorTest {
     public ExpectedException exceptionRule = ExpectedException.none();
     
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         obj = new StringCalculator();
     }
 
@@ -57,5 +57,13 @@ public class StringCalculatorTest {
         assertEquals(3, obj.add("//;\n1;2"));
         assertEquals(3, obj.add("//\n\n1\n2"));
         assertEquals(6, obj.add("//,\n1,2,3"));
+    }
+    
+    @Test
+    public void testAddNegative() {
+        exceptionRule.expect(UnsupportedOperationException.class);
+        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage("-4");
+        assertEquals(2, obj.add("1,2,3,-4"));
     }
 }
