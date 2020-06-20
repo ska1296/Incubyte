@@ -49,5 +49,11 @@ public class StringCalculatorTest {
     @Test
     public void testAddNewLines() {
         assertEquals(10, obj.add("1\n2,3,4"));
+        assertEquals(10, obj.add("1\n2,3\n4"));
+    }
+    
+    @Test
+    public void testAddInputDelimeter() {
+        assertEquals(3, obj.add("//;\n1;2"));
     }
 }
