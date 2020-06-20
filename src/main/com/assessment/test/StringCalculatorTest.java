@@ -98,4 +98,10 @@ public class StringCalculatorTest {
         assertEquals(1000, obj.add("1000"));
         assertEquals(2, obj.add("2,1001"));
     }
+    
+    @Test
+    public void testAddLengthyDelimiter() {
+        assertEquals(6, obj.add("//[***]\n1***2***3"));
+        assertEquals(10, obj.add("//[\n\n\n\n]\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4"));
+    }
 }
