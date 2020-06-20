@@ -45,4 +45,9 @@ public class StringCalculatorTest {
         assertEquals(40, obj.add("1,2,3,4,10,20"));
         assertEquals(15, obj.add("3,5,7"));
     }
+    
+    @Test
+    public void testAddNewLines() {
+        assertEquals(10, obj.add("1\n2,3,4"));
+    }
 }
