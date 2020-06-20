@@ -69,7 +69,7 @@ public class StringCalculatorTest {
         exceptionRule.expect(UnsupportedOperationException.class);
         exceptionRule.expectMessage("negatives not allowed.");
         exceptionRule.expectMessage("-1");
-        assertEquals(2, obj.add("-1"));
+        assertEquals(-1, obj.add("-1"));
         
     }
 }
