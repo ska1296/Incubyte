@@ -1,6 +1,7 @@
 package com.assessment.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -69,7 +70,15 @@ public class StringCalculatorTest {
         exceptionRule.expect(UnsupportedOperationException.class);
         exceptionRule.expectMessage("negatives not allowed.");
         exceptionRule.expectMessage("-1");
-        assertEquals(-1, obj.add("-1"));
-        
+        assertEquals(2, obj.add("-1"));
     }
+    
+    @Test
+    public void testAddMultipleNegatives() {
+        exceptionRule.expect(UnsupportedOperationException.class);
+        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage("-19, -4, -21");
+        assertEquals(-38, obj.add("-19,2,3,-4,-21,1"));
+    }
+
 }
