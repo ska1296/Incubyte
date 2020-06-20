@@ -2,8 +2,10 @@ package com.assessment;
 
 public class StringCalculator {
     
+    private int called = 0;
     
     public int add(String numbers) {
+        called++;
         if (numbers.isEmpty())
             return 0;
         int sum = 0;
@@ -46,6 +48,10 @@ public class StringCalculator {
         if (negativePresent)
             throw new UnsupportedOperationException("negatives not allowed. Negative numbers: "+negatives.substring(0, negatives.length()-2));
         return sum;
+    }
+
+    public int getCalledCount() {
+        return called;
     }
 
 }
