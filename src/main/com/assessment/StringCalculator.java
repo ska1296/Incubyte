@@ -17,9 +17,12 @@ public class StringCalculator {
             numbers = numbers.replace("\n", ",");
         if (numbers.contains(delimiter)) {
             sum = calculateSum(numbers, delimiter);
-        } else
-            return Integer.parseInt(numbers);
-        
+        } else {
+            int result = Integer.parseInt(numbers);
+            if (result > 1000)
+                result = 0;
+            return result;
+        }
         return sum;
     }
 
@@ -42,6 +45,8 @@ public class StringCalculator {
                     negativePresent = true;
                     negatives.append(eachNum+", ");
                 }
+                if (Integer.parseInt(eachNum.trim()) > 1000)
+                    eachNum = "0";
                 sum+=Integer.parseInt(eachNum.trim());
             }
         }
