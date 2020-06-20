@@ -55,5 +55,7 @@ public class StringCalculatorTest {
     @Test
     public void testAddInputDelimeter() {
         assertEquals(3, obj.add("//;\n1;2"));
+        assertEquals(3, obj.add("//\n\n1\n2"));
+        assertEquals(6, obj.add("//,\n1,2,3"));
     }
 }
