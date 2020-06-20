@@ -42,5 +42,7 @@ public class StringCalculatorTest {
     @Test 
     public void testAddN() {
         assertEquals(10, obj.add("1,2,3,4"));
+        assertEquals(40, obj.add("1,2,3,4,10,20"));
+        assertEquals(15, obj.add("3,5,7"));
     }
 }
