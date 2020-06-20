@@ -1,5 +1,7 @@
 package com.assessment;
 
+import java.util.StringTokenizer;
+
 public class StringCalculator {
     
     private int called = 0;
@@ -12,7 +14,7 @@ public class StringCalculator {
         String delimiter = ",";
         if (numbers.startsWith("//")) {
             delimiter = getDelimiter(numbers);
-            numbers = numbers.substring(numbers.indexOf('\n')+1, numbers.length());
+            numbers = getNumbers(numbers);
         } else
             numbers = numbers.replace("\n", ",");
         if (numbers.contains(delimiter)) {
@@ -26,9 +28,21 @@ public class StringCalculator {
         return sum;
     }
 
+    private String getNumbers(String numbers) {
+        if (numbers.startsWith("//[") && numbers.contains("]\n"))
+            numbers = numbers.substring(numbers.indexOf("]\n")+1, numbers.length());
+        else
+            numbers = numbers.substring(numbers.indexOf('\n')+1, numbers.length());
+        return numbers;
+    }
+
     private String getDelimiter(String numbers) {
         String delimter;
-        delimter = numbers.substring(0, numbers.indexOf('\n')).replace("//", "");
+        if (numbers.startsWith("//[")) {
+            delimter = numbers.substring(numbers.indexOf('[')+1, numbers.indexOf(']'));
+        }
+        else
+            delimter = numbers.substring(0, numbers.indexOf('\n')).replace("//", "");
         if (delimter.isEmpty())
             delimter = "\n";
         return delimter;
@@ -36,10 +50,11 @@ public class StringCalculator {
 
     private int calculateSum(String numbers, String delimiter) {
         int sum = 0;
-        String [] input = numbers.split(delimiter);
+        StringTokenizer strToken = new StringTokenizer(numbers, delimiter);
         boolean negativePresent = false;
         StringBuilder negatives = new StringBuilder();
-        for (String eachNum : input) {
+        while (strToken.hasMoreElements()) {
+            String eachNum = strToken.nextToken();
             if (!eachNum.isEmpty()) {
                 if (Integer.parseInt(eachNum.trim()) < 0) {
                     negativePresent = true;

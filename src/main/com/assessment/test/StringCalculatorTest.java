@@ -14,6 +14,7 @@ import com.assessment.StringCalculator;
 public class StringCalculatorTest {
 
     StringCalculator obj;
+    private static final String NO_NEGATIVES = "negatives not allowed.";
     
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
@@ -63,12 +64,12 @@ public class StringCalculatorTest {
     @Test
     public void testAddNegative() {
         exceptionRule.expect(UnsupportedOperationException.class);
-        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage(NO_NEGATIVES);
         exceptionRule.expectMessage("-4");
         assertEquals(2, obj.add("1,2,3,-4"));
         
         exceptionRule.expect(UnsupportedOperationException.class);
-        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage(NO_NEGATIVES);
         exceptionRule.expectMessage("-1");
         assertEquals(-1, obj.add("-1"));
     }
@@ -76,7 +77,7 @@ public class StringCalculatorTest {
     @Test
     public void testAddMultipleNegatives() {
         exceptionRule.expect(UnsupportedOperationException.class);
-        exceptionRule.expectMessage("negatives not allowed.");
+        exceptionRule.expectMessage(NO_NEGATIVES);
         exceptionRule.expectMessage("-19, -4, -21");
         assertEquals(-38, obj.add("-19,2,3,-4,-21,1"));
     }
