@@ -2,6 +2,7 @@ package com.assessment;
 
 public class StringCalculator {
     
+    
     public int add(String numbers) {
         if (numbers.isEmpty())
             return 0;
@@ -31,14 +32,19 @@ public class StringCalculator {
     private int calculateSum(String numbers, String delimiter) {
         int sum = 0;
         String [] input = numbers.split(delimiter);
+        boolean negativePresent = false;
+        StringBuilder negatives = new StringBuilder();
         for (String eachNum : input) {
             if (!eachNum.isEmpty()) {
                 if (Integer.parseInt(eachNum.trim()) < 0) {
-                    throw new UnsupportedOperationException("negatives not allowed. Negative number: "+eachNum);
+                    negativePresent = true;
+                    negatives.append(eachNum+", ");
                 }
                 sum+=Integer.parseInt(eachNum.trim());
             }
         }
+        if (negativePresent)
+            throw new UnsupportedOperationException("negatives not allowed. Negative numbers: "+negatives.substring(0, negatives.length()-2));
         return sum;
     }
 
