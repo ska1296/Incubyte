@@ -6,6 +6,7 @@ public class StringCalculator {
         if (numbers.isEmpty())
             return 0;
         int sum = 0;
+        numbers = numbers.replace("\n", ",");
         if (numbers.contains(",")) {
             String [] input = numbers.split(",");
             for (String eachNum : input) {
