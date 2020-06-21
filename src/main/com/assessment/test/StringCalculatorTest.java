@@ -111,4 +111,10 @@ public class StringCalculatorTest {
         assertEquals(6, obj.add("//[*][%]\n1*2%3"));
         assertEquals(6, obj.add("//[\n][%]\n1\n2%3"));
     }
+    
+    @Test
+    public void testAddMultipleLengthyDelimiter() {
+        assertEquals(6, obj.add("//[**][%%]\n1**2%%3"));
+        assertEquals(6, obj.add("//[\n\n][%%]\n1\n\n2%%3"));
+    }
 }
