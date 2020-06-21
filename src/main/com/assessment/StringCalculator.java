@@ -3,29 +3,19 @@ package com.assessment;
 import java.util.StringTokenizer;
 
 public class StringCalculator {
-    
+
     private int called = 0;
-    
     public int add(String numbers) {
         called++;
         if (numbers.isEmpty())
             return 0;
-        int sum = 0;
         String delimiter = ",";
         if (numbers.startsWith("//")) {
             delimiter = getDelimiter(numbers);
             numbers = getNumbers(numbers);
         } else
             numbers = numbers.replace("\n", ",");
-        if (numbers.contains(delimiter)) {
-            sum = calculateSum(numbers, delimiter);
-        } else {
-            int result = Integer.parseInt(numbers);
-            if (result > 1000)
-                result = 0;
-            return result;
-        }
-        return sum;
+        return calculateSum(numbers, delimiter);
     }
 
     private String getNumbers(String numbers) {
@@ -37,15 +27,17 @@ public class StringCalculator {
     }
 
     private String getDelimiter(String numbers) {
-        String delimter;
+        String delimiter;
         if (numbers.startsWith("//[")) {
-            delimter = numbers.substring(numbers.indexOf('[')+1, numbers.indexOf(']'));
+            delimiter = numbers.substring(numbers.indexOf('[')+1, numbers.indexOf("]\n"));
+            delimiter = delimiter.replace("[", "");
+            delimiter = delimiter.replace("]", "");
         }
         else
-            delimter = numbers.substring(0, numbers.indexOf('\n')).replace("//", "");
-        if (delimter.isEmpty())
-            delimter = "\n";
-        return delimter;
+            delimiter = numbers.substring(0, numbers.indexOf('\n')).replace("//", "");
+        if (delimiter.isEmpty())
+            delimiter = "\n";
+        return delimiter;
     }
 
     private int calculateSum(String numbers, String delimiter) {
@@ -56,18 +48,28 @@ public class StringCalculator {
         while (strToken.hasMoreElements()) {
             String eachNum = strToken.nextToken();
             if (!eachNum.isEmpty()) {
-                if (Integer.parseInt(eachNum.trim()) < 0) {
-                    negativePresent = true;
-                    negatives.append(eachNum+", ");
-                }
-                if (Integer.parseInt(eachNum.trim()) > 1000)
-                    eachNum = "0";
+                negativePresent = handleNegative(negativePresent, negatives, eachNum);
+                eachNum = handleBigValues(eachNum);
                 sum+=Integer.parseInt(eachNum.trim());
             }
         }
         if (negativePresent)
             throw new UnsupportedOperationException("negatives not allowed. Negative numbers: "+negatives.substring(0, negatives.length()-2));
         return sum;
+    }
+
+    private String handleBigValues(String eachNum) {
+        if (Integer.parseInt(eachNum.trim()) > 1000)
+            eachNum = "0";
+        return eachNum;
+    }
+
+    private boolean handleNegative(boolean negativePresent, StringBuilder negatives,String eachNum) {
+        if (Integer.parseInt(eachNum.trim()) < 0) {
+            negativePresent = true;
+            negatives.append(eachNum+", ");
+        }
+        return negativePresent;
     }
 
     public int getCalledCount() {
