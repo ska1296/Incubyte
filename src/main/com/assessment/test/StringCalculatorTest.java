@@ -9,12 +9,11 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.assessment.StringCalculator;
-
+import static com.assessment.constants.Constants.NO_NEGATIVES;
 
 public class StringCalculatorTest {
 
     StringCalculator obj;
-    private static final String NO_NEGATIVES = "negatives not allowed.";
     
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
